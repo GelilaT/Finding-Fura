@@ -1,34 +1,36 @@
 'use client'
-import React, { useState } from 'react';
+import { useSubscribeMutation } from '@/redux/slices/subscriptionApi';
+import React, { useState, FormEvent } from 'react';
 
 const SubscriptionForm: React.FC = () => {
+  const [subscribe, { isLoading, isSuccess, isError }] = useSubscribeMutation();
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    //   console.log("Form submitted:", formData);
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-    });
-    
-    // Add your submit logic here
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    try {
+      await subscribe(formData).unwrap();
+      alert("Subscription successful!");
+    } catch (error) {
+      alert("Subscription failed!");
+    }
   };
 
   return (
-    <div className="max-w-md text-white bg-white p-6 backdrop-blur-lg bg-opacity-40 rounded-lg shadow-md hover:scale-105 ease-in-out duration-300 m-20 mx-auto">
-      <h2 className="text-xl text-center mb-4">Subscribe to our Weekly Blog</h2>
+    <div className="max-w-md p-6 bg-gradient-to-l from-[#AA163F] to-[#f3d465] rounded-lg shadow-md hover:scale-105 ease-in-out duration-300">
+      <h2 className="text-xl text-white text-center mb-4">Subscribe to our weekly blog</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className='flex space-x-2'>
           <input
@@ -67,10 +69,10 @@ const SubscriptionForm: React.FC = () => {
         <div>
           <input
             type="tel"
-            name="phone"
-            id="phone"
+            name="phoneNumber"
+            id="phoneNumber"
             placeholder='Phone Number'
-            value={formData.phone}
+            value={formData.phoneNumber}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
             required
@@ -78,10 +80,19 @@ const SubscriptionForm: React.FC = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-[#AA163F] text-white py-2 px-4 rounded-md hover:border-2 hover:border-[#aa163f] hover:bg-white hover:text-black"
+          disabled={isLoading}
+          className="w-full text-[#AA163F] bg-white py-2 px-4 rounded-md hover:bg-opacity-40 hover:text-[#AA163F]"
         >
           Subscribe
         </button>
+        {isSuccess && (
+            <p className="text-green-600 text-center">
+              Successfully subscribed!
+            </p>
+          )}
+          {isError && (
+            <p className="text-white text-center">Already Subscribed😊</p>
+          )}
       </form>
     </div>
   );

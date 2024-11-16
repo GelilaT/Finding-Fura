@@ -41,7 +41,7 @@ const events: Event[] = [
     imageUrl: "/images/event-8.jpg",
     detailsUrl: "/event-details",
   },
-  // Add more events as needed
+  
 ];
 
 const Events: React.FC = () => {
@@ -83,7 +83,7 @@ const Events: React.FC = () => {
                   className="rounded-sm transition-transform duration-300"
                 />
                 
-                {/* Overlay with rotated and blurred arrow on hover */}
+                
                 <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 hover:backdrop-blur-sm p-3 rounded-sm flex flex-col justify-between">
                   
                   <div className="absolute top-3 right-2 text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform bg-white rounded-full text-opacity-35 -rotate-45 p-1">

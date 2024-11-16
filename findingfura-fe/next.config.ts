@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
     });
     return config;
   },
+
+  images: {
+    domains: ['api.findingfura.com'],  // Add the external domain here
+  }
+
 };
 
 export default nextConfig;

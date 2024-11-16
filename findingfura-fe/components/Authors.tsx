@@ -11,7 +11,7 @@ interface CircleProps {
 
 const Circle: React.FC<CircleProps> = ({ imageSrc, alt, offsetX, offsetY, zIndex }) => (
   <div
-        className={`absolute w-24 h-24 rounded-full border-2 border-[#F78716] overflow-hidden shadow-lg ${zIndex}`}
+        className={`absolute w-24 h-24 rounded-full border-2 border-[#F78716] overflow-hidden shadow-lg ${zIndex} `}
     style={{ transform: `translate(${offsetX}, ${offsetY})` }}
   >
     <Image src={imageSrc} alt={alt} layout="fill" objectFit="cover" />
