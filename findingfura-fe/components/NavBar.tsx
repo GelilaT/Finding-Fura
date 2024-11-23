@@ -73,14 +73,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              className="hover:border-b-4 hover:border-[#AA163F] px-4 py-1 hover:rounded-b-sm"
-              href="#about"
-            >
-              About
-            </Link>
-          </li>
+          
           <li
             className="relative"
             onClick={() => setShowBlogDropdown(!showBlogDropdown)}
@@ -92,7 +85,6 @@ const Navbar = () => {
               <ul
                 ref={blogDropdownRef}
                 className="absolute top-full left-0 w-48 bg-white text-black rounded-xl shadow-lg mt-2 z-50"
-                onClick={(e) => e.stopPropagation()} 
               >
                 {categories.map((category) => (
                   <li
@@ -166,11 +158,9 @@ const Navbar = () => {
         }`}
       >
         <li className="py-6 text-4xl">
-          <Link href="#home">Home</Link>
+          <Link href="/">Home</Link>
         </li>
-        <li className="py-6 text-4xl">
-          <Link href="#about">About</Link>
-        </li>
+      
         <li className="py-6 text-4xl">
           <div onClick={() => setShowBlogDropdown(!showBlogDropdown)}>
             <p>Blog</p>
@@ -192,7 +182,7 @@ const Navbar = () => {
           </div>
         </li>
         <li className="py-6 text-4xl">
-          <Link href="/signup">Contact Us</Link>
+          <Link href="mailto:general@findingfura.com">Contact Us</Link>
         </li>
       </ul>
     </div>

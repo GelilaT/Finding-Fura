@@ -8,4 +8,5 @@ export type Blog = {
     author_title: string | null;
     additional_content: string | null;
     created_at: Date;
+    category?: string
 }
