@@ -15,7 +15,7 @@ export default function Home() {
     <div>
       <div className="relative bg-white md:bg-[#FFCE1B] md:bg-opacity-15 m-3 border-none rounded-md">
         <div className="relative">
-        {/* Curved Picture */}
+        
         <div className="absolute top-3 left-20 hidden md:block">
           <CurvedPic
             imagesrc="/images/halifet.png"
@@ -24,14 +24,14 @@ export default function Home() {
           />
         </div>
 
-        {/* Main Content */}
+        
         <div className="flex items-center justify-center pt-2 md:pt-36">
-          {/* Left Triangle */}
+        
           <div className="hidden">
             <LeftTri />
           </div>
 
-          {/* Center Circle with Text */}
+        
           <div
             className="bg-white rounded-full flex items-center justify-center md:w-[450px] md:h-[450px]"
           >
@@ -40,7 +40,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right Triangle */}
+         
           <div className="hidden">
             <RightTri />
           </div>
