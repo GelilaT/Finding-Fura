@@ -3,31 +3,16 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "./ui/Button";
+import { Dropdown } from "./ui/DropDown";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [showBlogDropdown, setShowBlogDropdown] = useState(false);
-  const blogDropdownRef = useRef<HTMLUListElement | null>(null);
 
   const handleClick = () => {
     setShowMenu(!showMenu);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        blogDropdownRef.current &&
-        !blogDropdownRef.current.contains(e.target as Node)
-      ) {
-        setShowBlogDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   const categories = [
     "Opinions",
@@ -40,7 +25,7 @@ const Navbar = () => {
 
   return (
     <div
-      className="sticky top-0 w-full h-[80px] flex justify-between items-center px-4
+      className="top-0 w-full h-[80px] flex justify-between items-center px-4
       bg-opacity-20 backdrop-blur text-white mx-auto z-40"
     >
       <div className="text-2xl font-bold mx-5">
@@ -74,87 +59,30 @@ const Navbar = () => {
             </Link>
           </li>
           
-          <li
-            className="relative"
-            onClick={() => setShowBlogDropdown(!showBlogDropdown)}
-          >
-            <p className="hover:border-b-4 hover:border-[#AA163F] px-4 py-1 hover:rounded-b-sm hover:cursor-pointer">
-              Blog
-            </p>
-            {showBlogDropdown && (
-              <ul
-                ref={blogDropdownRef}
-                className="absolute top-full left-0 w-48 bg-white text-black rounded-xl shadow-lg mt-2 z-50"
-              >
-                {categories.map((category) => (
-                  <li
-                    key={category}
-                    className="px-4 py-2 hover:bg-[#F78716] hover:text-white hover:rounded-xl z-50"
-                  >
-                    <Link
-                      href={`/blogs/${category.toLowerCase()}`}
-                      className="text-sm"
-                    >
-                      {category.replace("-", " & ")}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+          <li>
+            <div className="hover:border-b-4 hover:border-[#AA163F] hover:cursor-pointer px-4 py-1 hover:rounded-b-sm">
+
+            <Dropdown text="Blogs" options={categories} />
+            </div>
           </li>
 
         </ul>
       </div>
 
-      <div className="hidden sm:flex">
-        <button
-          className="relative group bg-[#AA163F] hover:bg-opacity-20 text-blueblack-light 
-            hover:text-foreground px-4 py-2 flex items-center justify-center gap-2
-            transition-all duration-300 ease-in-out
-            text-nowrap ml-10 my-5 text-white hover:text-black rounded-3xl hover:bg-[#F78716] hover:rounded-none"
-        >
-          <div
-            className="absolute top-0 left-0 w-[1px] h-0 group-hover:h-full 
-            bg-gradient-to-b from-transparent to-[#AA163F]
-            transition-all duration-700 ease-in-out
-            "
-          ></div>
-          <div
-            className="absolute top-0 left-0 w-0 group-hover:w-full h-[1px]
-            bg-gradient-to-r from-transparent to-[#AA163F]
-            transition-all duration-700 ease-in-out
-            "
-          ></div>
-          <div
-            className="absolute bottom-0 right-0 w-[1px] h-0 group-hover:h-full 
-            bg-gradient-to-t from-transparent to-[#AA163F]
-            transition-all duration-700 ease-in-out
-            "
-          ></div>
-          <div
-            className="absolute bottom-0 right-0 w-0 group-hover:w-full h-[1px]
-            bg-gradient-to-l from-transparent to-[#AA163F]
-            transition-all duration-700 ease-in-out
-            "
-          ></div>
-          <Link className="hover:text-black" href="mailto:general@findingfura.com">
-            Contact Us
-          </Link>
-        </button>
-      </div>
-
-      <div onClick={handleClick} className="sm:hidden absolute right-8 z-10">
+      <Button text="Contact us" link="mailto:general@findingfura.com"/>
+      <div onClick={handleClick} className="sm:hidden absolute right-8 z-50 ">
         {showMenu ? (
-          <FaTimes className="text-2xl text-[#AA163F]" />
+          <FaTimes className="text-2xl text-white" />
         ) : (
           <FaBars className="text-2xl text-[#AA163F]" />
         )}
       </div>
 
       <ul
+        onClick={handleClick}
         className={`${
           showMenu
-            ? "absolute top-0 left-0 w-full h-screen bg-[#AA163F] bg-opacity-50 backdrop-blur-4xl flex flex-col justify-center items-center"
+            ? "absolute top-0 left-0 w-full h-screen bg-[#AA163F] flex flex-col justify-center backdrop-blur-xl bg-opacity-85 items-center z-40"
             : "hidden"
         }`}
       >
@@ -163,24 +91,8 @@ const Navbar = () => {
         </li>
       
         <li className="py-6 text-4xl">
-          <div onClick={() => setShowBlogDropdown(!showBlogDropdown)}>
-            <p>Blog</p>
-            {showBlogDropdown && (
-              <ul
-                ref={blogDropdownRef}
-                className="bg-white text-black rounded-xl shadow-lg mt-2 w-72 text-sm"
-                onClick={(e) => e.stopPropagation()} // Prevent dropdown from closing
-              >
-                {categories.map((category) => (
-                  <li key={category} className="px-4 py-2 hover:bg-[#F78716] hover:text-white rounded-t-xl">
-                    <Link href={`/blogs/${category.toLowerCase()}`}>
-                      {category.replace("-", " & ")}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <Dropdown text="Blogs" options={categories} />
+
         </li>
         <li className="py-6 text-4xl">
           <Link href="mailto:general@findingfura.com">Contact Us</Link>

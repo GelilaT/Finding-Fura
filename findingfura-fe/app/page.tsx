@@ -1,92 +1,88 @@
 import Image from "next/image";
-import RightImage from "@/components/ui/RightImage";
-import RightTri from "@/public/rightTri.svg"
-import LeftTri from "@/public/leftTri.svg"
-import Circle from "@/components/Authors";
 import About from "@/components/About";
 import Events from "@/components/Event";
-import CurvedPic from "@/components/ui/CurvedPic";
-import CurvedText from "@/components/ui/CurvedText";
-import { MdArrowForward } from "react-icons/md";
 import Article from "@/components/Article";
+import Button from "@/components/ui/Button";
 
 export default function Home() {
   return (
     <div>
-      <div className="relative bg-white md:bg-[#FFCE1B] md:bg-opacity-15 m-3 border-none rounded-md">
-        <div className="relative">
-        
-        <div className="absolute top-3 left-20 hidden md:block">
-          <CurvedPic
-            imagesrc="/images/halifet.png"
-            imagetitle="One of our authors"
-            classname="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 hover:scale-105 ease-in-out duration-300"
-          />
-        </div>
-
-        
-        <div className="flex items-center justify-center pt-2 md:pt-36">
-        
-          <div className="hidden">
-            <LeftTri />
-          </div>
-
-        
-          <div
-            className="bg-white rounded-full flex items-center justify-center md:w-[450px] md:h-[450px]"
-          >
-            <p className="text-[#AA163F] font-bold text-2xl w-4/6 md:text-4xl md:w-5/6 text-center leading-loose">
-              Crafting a vibrant collective feminist community through the art of storytelling
-            </p>
-          </div>
-
-         
-          <div className="hidden">
-            <RightTri />
-          </div>
-        </div>
-      </div>
-
-
-      
-      <div className="absolute top-6 right-20 hidden md:block">
-
-        <RightImage />
-      </div>
-      <div className="p-10 flex flex-col md:flex-row items-between justify-between md:justify-between gap-6 md:pb-0">
+      <div className="relative -z-10">
+      {/* Header and Content */}
+      <div className="mx-auto px-6 md:px-20 lg:px-24 py-12 md:py-20 grid md:flex gap-12 items-center">
+        {/* Left Section */}
         <div>
-          <div className="flex-item flex-shrink-0 hover:scale-105 ease-in-out duration-300">
-            <Circle imageSrc="/images/Naol.png" alt="Circle 1" offsetX="0px" offsetY="0px" zIndex="z-20" />
-            <Circle imageSrc="/images/Loza.png" alt="Circle 2" offsetX="60px" offsetY="0px" zIndex="z-10" />
-            <Circle imageSrc="/images/halifet.png" alt="Circle 3" offsetX="120px" offsetY="0px" zIndex="z-0" />
-          </div>
-          
-        </div>
-
-        <div className="text-center md:text-left hidden md:block">
-          <p className="text-black text-opacity-15">
-            Sleep, sleep my children <br /> Sleep, sleep my children <br /> You're my best child <br /> For they killed the
-            best <br /> <span className="text-[#AA163F] text-opacity-15">Fura</span>, you're the leader of woman!
+          <p className="text-3xl md:text-4xl font-semibold text-black leading-loose ">
+            Crafting a vibrant collective
+            <span className="text-[#AA163F]"> feminist</span> community through the art of storytelling 
           </p>
+          <p className="text-gray-600 mt-6 leading-relaxed">
+            An online feminist magazine dedicated to providing a platform for thoughtful and critical discussions, shaping narratives on essential topics—all through a feminist lens.
+
+          </p>
+                  
+            <Button text="Get involved" link="mailto:general@findingfura.com?subject=Request to join fura’s volunteers’ community"/>
+        </div>
+
+        {/* Right Section: Images */}
+        <div className="flex gap-5 items-end relative">
+          {/* Top Row */}
+          <div className="flex flex-col gap-6">
+            <div
+                className="relative w-40 h-40 md:w-48 md:h-48 rounded-tl-[80px] shadow-lg overflow-hidden p-2 bg-yellow-100 transition-transform duration-300 hover:scale-105"
+                          
+            >
+              <img
+                src="/images/halifet.png"
+                alt="Influencer 1"
+                className="w-full h-full object-cover rounded-tl-[80px]"
+              />
+              
+            </div>
+            <div
+              className="relative w-40 h-40 md:w-48 md:h-48 rounded-lg shadow-lg overflow-hidden rounded-bl-[80px] p-2 bg-gray-100 transition-transform duration-300 hover:scale-105"
+            >
+              <img
+                src="/images/megedlawit.png"
+                alt="Influencer 2"
+                className="w-full h-full object-cover rounded-bl-[80px]"
+              />
+            </div>
+          </div>
+          {/* Bottom Row */}
+          <div className="flex flex-col gap-6">
+            <div
+              className="relative w-40 h-40 md:w-48 md:h-48 rounded-lg shadow-lg overflow-hidden rounded-tr-[80px] p-2 bg-orange-100 transition-transform duration-300 hover:scale-105"
+            >
+              <img
+                src="/images/loza.png"
+                alt="Influencer 3"
+                className="w-full h-full object-cover rounded-tr-[80px]"
+              />
+              
+            </div>
+            <div
+              className="relative w-40 h-40 md:w-48 md:h-48 rounded-lg shadow-lg overflow-hidden rounded-br-[80px] p-2 bg-red-300 bg-opacity-15 transition-transform duration-300 hover:scale-105"
+            >
+              <img
+                src="/images/naol.png"
+                alt="Influencer 4"
+                className="w-full h-full object-cover rounded-br-[80px]"
+              />
+            </div>
+          </div>
         </div>
       </div>
-        
-        <div className="w-fit pb-10 px-12 pt-16 md:pt-0 ">
 
-            <h1 className="text-[#AA163F]">Some of our top authors</h1>
-            <hr className="w-full px-12 border-[#AA163F]"/>
-        </div>
-
-        
-        
-      <a href="mailto:general@findingfura.com?subject=Request to join fura’s volunteers’ community" className="absolute md:-bottom-12 md:left-1/2 right-5 bottom-11 transform -translate-x-1/2 w-24 h-24 rounded-full bg-[#AA163F] border-8 border-white text-white tracking-widest text-xs animate-rotate">
-            
-        <CurvedText text="Get Involved" />
-        <MdArrowForward className="-rotate-45 absolute left-6 top-7" size={35} />
-      </a>
-
-
+      {/* Decorative Background Shapes */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -bottom-2 -left-16 w-32 h-32 bg-gray-100 rounded-full -z-10"></div>
+        <div className="absolute bottom-16 right-10 w-32 h-32 bg-yellow-200 rounded-full -z-10"></div>
+              
+        <div className="absolute top-16 left-10 w-32 h-32 bg-yellow-100 rounded-full -z-10"></div>
       </div>
+    </div>
+
       <Article />
       <About />
       {/* <div>
